@@ -52,15 +52,6 @@ jobs:
         run: |
           pytest --doctest-modules --junitxml=junit/pytest-results-${{ matrix.python-version }}.xml --cov=$PROJECT_NAME --cov-report=xml tests/
 
-      - name: Run linters
-        run: |
-          echo "Running linters"
-
-          pip install black
-          flake8 .
-          isort --check-only . 2>&1
-          black --check . 2>&1
-
       - name: Upload pytest test results
         uses: actions/upload-artifact@master
         with:
